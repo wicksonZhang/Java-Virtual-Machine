@@ -74,14 +74,14 @@ Java虚拟机（JVM）是一个复杂的系统，由多个组件组成，主要�
    * 核心功能：负责加载Class文件，将其转换为JVM内部表示的对象，并加载到内存中。
    * 组成部分：**启动类加载器（Bootstrap Class Loader）**、**扩展类加载器（Extension Class Loader）**和 **应用程序类加载器（Application Class Loader）**
 2. **运行时数据区（Runtime Data Area）**
-   * 核心功能：JVM内存管理的主要区域。
+   * 核心功能：JVM内存管理的主要区域，比如对象的创建和销毁。
    * 组成部分：**方法区（Method Area）**、**堆（Heap）**、**虚拟机栈（Java Virtual Machine Stacks）**、**本地方法栈（Native Method Stack）**
    * **方法区（Method Area）**：存储类的结构信息、静态变量、常量、方法字节码等数据。
    * **堆（Heap）**：存储所有对象实例以及数组对象。
    * **虚拟机栈（Java Virtual Machine Stacks）**：存储线程的方法调用栈、局部变量等信息。
    * **本地方法栈（Native Method Stack）**：与虚拟机栈类似，但是用于执行本地方法。
 3. **执行引擎（Execution Engine）**
-   * 核心功能：负责执行JVM加载的字节码。
+   * 核心功能：负责执行JVM加载的字节码，同时使用即时编译优化性能。
    * 组成部分：**解释器（Interpreter）**和 **即时编译器（Just-In-Time Compiler，JIT Compiler）**。
    * **解释器（Interpreter）：**逐条解释字节码并执行。
    * **即时编译器（Just-In-Time Compiler，JIT Compiler）：**将字节码编译成本地机器码以提高执行效率。
@@ -90,7 +90,7 @@ Java虚拟机（JVM）是一个复杂的系统，由多个组件组成，主要�
 
 具体 JVM 组成如下图所示
 
-![image-20240227214459099](https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402272144167.png)
+![image-20240228211308931](https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402282113106.png)
 
 
 
