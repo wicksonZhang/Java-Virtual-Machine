@@ -1,6 +1,6 @@
 ## 内容大纲
 
-> 本章节示例代码：
+> 本章节示例代码：https://github.com/wicksonZhang/Java-Virtual-Machine/tree/main/01-chapter/src/main/java/cn/wickson/jvm/item01
 
 本章节主要讲解的两个核心部分是：字节码的组成、字节码的常见工具。具体内容如下：
 
@@ -158,3 +158,72 @@ Calculator.class   Calculator.java
 
 
 ## 阿里 Arthas
+
+> 官网地址：https://arthas.aliyun.com
+
+Arthas 是一款线上监控诊断产品，通过全局视角实时查看应用 load、内存、gc、线程的状态信息，并能在不修改应用代码的情况下，对业务问题进行诊断，包括查看方法调用的出入参、异常，监测方法执行耗时，类加载信息等，大大提升线上问题排查效率。
+
+### Arthas 安装&启动
+
+> 下载地址：https://github.com/alibaba/arthas
+
+* 本次下载的是 **Windows arthas-all-3.7.2** 版本
+
+<img src="https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402292255533.png" alt="image-20240229225538435" style="zoom:100%;float:left" />
+
+* 我们启动我们本次运行的程序 `ArthasDemo.java`
+
+<img src="https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402292307247.png" alt="image-20240229230745211" style="zoom:100%;float:left" />
+
+* 启动 Arthas , 可以看到 [6] 就是我们本次启动的程序
+
+```sh
+D:\Software\Arthas>java -jar arthas-boot.jar
+[INFO] JAVA_HOME: D:\Software\Java\jre1.8.0_351
+[INFO] arthas-boot version: 3.7.2
+[INFO] Process 7656 already using port 3658
+[INFO] Process 7656 already using port 8563
+[INFO] Found existing java process, please choose one and input the serial number of the process, eg : 1. Then hit ENTER.
+* [1]: 7656
+  [2]: 3440 org.jetbrains.idea.maven.server.RemoteMavenServer36
+  [3]: 14692 org.jetbrains.jps.cmdline.Launcher
+  [4]: 7652 org.jetbrains.idea.maven.server.RemoteMavenServer36
+  [5]: 8696
+  [6]: 10780 cn.wickson.jvm.item02.ArthasDemo
+```
+
+
+
+### Arthas 相关命令
+
+#### 查看 DashBoard
+
+```sh
+# 我们通过如下命令可以看到三块区域信息
+[arthas@15660]$ dashboard -i 2000 -n 1
+```
+
+|   ID   | NAME   | GROUP    | PRIORITY   | STATE    | CPU%            |     DELTA_TIME      | TIME   | INTERRUPTED | DAEMON       |
+| :----: | ------ | -------- | ---------- | -------- | --------------- | :-----------------: | ------ | ----------- | ------------ |
+| 线程ID | 线程名 | 线程组名 | 线程优先级 | 线程状态 | 线程的cpu使用率 | 线程运行增量CPU时间 | 总时间 | 中断状态    | 是否守护线程 |
+
+<img src="https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402292322216.png" alt="image-20240229232245189" style="zoom:100%;float:left" />
+
+| Memory   | used       | total      | usage      | GC   |
+| -------- | ---------- | ---------- | ---------- | ---- |
+| 内存区域 | 内存使用量 | 内存最大值 | 内存使用率 | GC   |
+
+<img src="https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402292323914.png" alt="image-20240229232350893" style="zoom:100%;float:left" />
+
+当前操作系统运行信息
+
+<img src="https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402292325798.png" alt="image-20240229232502766" style="zoom:100%;float:left" />
+
+#### 反编译字节码
+
+```sh
+# 我们可以通过 jad 命令反编译出源码信息
+[arthas@15660]$ jad cn.wickson.jvm.item02.ArthasDemo
+```
+
+<img src="https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402292327850.png" alt="image-20240229232740814" style="zoom:100%;float:left" />
