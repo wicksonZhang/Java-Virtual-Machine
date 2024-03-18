@@ -4,7 +4,7 @@
 
 本章节主要讲解的两个核心部分是：字节码的组成、字节码的常见工具。具体内容如下：
 
-
+<img src="https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402292335014.png" alt="字节码的组成" style="zoom:100%;float:left" />
 
 ## 如何获取字节码文件
 
