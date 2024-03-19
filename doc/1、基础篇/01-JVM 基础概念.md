@@ -6,7 +6,7 @@ JVM（Java Virtual Machine）解决的核心问题之一就是跨平台性，只
 
 ![image-20240227205401151](https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402272054209.png)
 
-
+---
 
 ## JVM 是什么？
 
@@ -14,7 +14,7 @@ JVM（Java Virtual Machine）解决的核心问题之一就是跨平台性，只
 
 ![image-20240227210933236](https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402272109284.png)
 
-
+---
 
 ## JVM 核心功能
 
@@ -64,7 +64,7 @@ JVM（Java Virtual Machine）解决的核心问题之一就是跨平台性，只
 
    ![image-20240227212826118](https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402272128171.png)
 
-
+---
 
 ## JVM 的组成
 
@@ -92,7 +92,7 @@ Java虚拟机（JVM）是一个复杂的系统，由多个组件组成，主要�
 
 ![image-20240228211308931](https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402282113106.png)
 
-
+---
 
 ## JDK、JRE、JVM 有什么区别
 

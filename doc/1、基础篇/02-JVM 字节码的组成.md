@@ -6,6 +6,8 @@
 
 <img src="https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402292335014.png" alt="字节码的组成" style="zoom:100%;float:left" />
 
+---
+
 ## 如何获取字节码文件
 
 ### 通过 `javac` 获取
@@ -85,7 +87,7 @@ Calculator.class   Calculator.java
 
 <img src="https://cdn.jsdelivr.net/gh/wicksonZhang/static-source-cdn/images/202402282250188.png" alt="image-20240228225031165" style="zoom:100%;float:left" />
 
-
+---
 
 ## 字节码组成部分
 
@@ -153,9 +155,7 @@ Calculator.class   Calculator.java
 
 **属性表（Attribute Table）**：包含了各种附加信息，如代码行号、异常处理器、注解等。
 
-
-
-
+---
 
 ## 阿里 Arthas
 
