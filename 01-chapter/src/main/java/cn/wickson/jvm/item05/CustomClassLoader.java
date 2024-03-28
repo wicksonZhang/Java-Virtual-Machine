@@ -1,56 +1,41 @@
 package cn.wickson.jvm.item05;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class CustomClassLoader extends ClassLoader {
 
-    private String byteCodePath;
+    private final String classPath;
 
-    public CustomClassLoader(String byteCodePath) {
-        this.byteCodePath = byteCodePath;
+    public CustomClassLoader(String classPath) {
+        this.classPath = classPath;
     }
-
-    public CustomClassLoader(ClassLoader parent, String byteCodePath) {
-        super(parent);
-        this.byteCodePath = byteCodePath;
-    }
-
-    // 加密密钥
-    private static final byte[] KEY = {0x01, 0x02, 0x03, 0x04, 0x05};
 
     @Override
-    public Class<?> findClass(String name) throws ClassNotFoundException {
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
         try {
-            // 读取加密的类文件
-            byte[] encryptedClassData = loadEncryptedClassData(name);
-            // 解密类文件
-            byte[] decryptedClassData = decryptClassData(encryptedClassData);
-            // 定义类
-            return defineClass(name, decryptedClassData, 0, decryptedClassData.length);
+            byte[] classData = loadClassData(name);
+            // 使用defineClass方法来定义一个类，这个方法会检查是否已经加载了这个类
+            return defineClass(name, classData, 0, classData.length);
         } catch (IOException e) {
             throw new ClassNotFoundException("Class not found: " + name, e);
         }
     }
 
-    // 从文件中加载加密的类数据
-    private byte[] loadEncryptedClassData(String className) throws IOException {
-        // 这里假设加密的类文件位于特定路径下，实际情况根据需要进行修改
-        try (FileInputStream fis = new FileInputStream(byteCodePath + className + ".txt")) {
-            byte[] buffer = new byte[fis.available()];
-            fis.read(buffer);
-            return buffer;
+    private byte[] loadClassData(String name) throws IOException {
+        // 将包路径中的"."替换成文件路径的"/"
+        String filePath = classPath + File.separator + name.replace('.', File.separatorChar) + ".class";
+        InputStream inputStream = Files.newInputStream(Paths.get(filePath));
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        int nextValue;
+        try {
+            while ((nextValue = inputStream.read()) != -1) {
+                byteStream.write(nextValue);
+            }
+        } finally {
+            inputStream.close();
         }
+        return byteStream.toByteArray();
     }
-
-    // 解密类数据
-    private byte[] decryptClassData(byte[] encryptedData) {
-        // 这里简单地对每个字节进行异或运算来模拟解密操作，实际情况下可以使用更加安全的加密算法
-        byte[] decryptedData = new byte[encryptedData.length];
-        for (int i = 0; i < encryptedData.length; i++) {
-            decryptedData[i] = (byte) (encryptedData[i] ^ KEY[i % KEY.length]);
-        }
-        return decryptedData;
-    }
-
 }
